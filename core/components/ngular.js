@@ -4,27 +4,19 @@ angular.module('ngular')
     },
     template:
       `
-        <div id="ngapp">
-          <div>
-            <results
+        <div>
+          <results
 
-            ></results>
-          </div>
-          <div>
-            <flip-button
+          ></results>
+          <flip-button
 
-            ></flip-button>
-          </div>
-          <div>
-            <display-results
+          ></flip-button>
+          <display-results
 
-            ></display-results>
-          </div>
-          <div>
-            <update-and-delete
+          ></display-results>
+          <update-and-delete
 
-            ></update-and-delete>
-          </div>
+          ></update-and-delete>
         </div>
       `
   });

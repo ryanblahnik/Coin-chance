@@ -4,7 +4,7 @@ angular.module('ngular')
     },
     template:
       `
-        <div class="display-results" style="padding-bottom: 120px">
+        <div style="padding-bottom: 120px">
           Heads<br>
           Heads<br>
           Tails<br>

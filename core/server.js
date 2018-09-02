@@ -8,11 +8,11 @@ appServer.use('/scripts', express.static(
   path.join(__dirname, '..', 'node_modules')));
 
 appServer.get('/', (req, res) => {
-  // res.end();
+  res.status(200).end();
 });
 
 appServer.post('/', (req, res) => {
-
+  res.status(201).end();
 });
 
 
@@ -24,5 +24,4 @@ appServer.post('/', (req, res) => {
 
 appServer.listen(8080, () => {
   console.log('Flip server listening on :8080')
-  // console.log(path.join(__dirname, '..', 'node_modules'));
 });

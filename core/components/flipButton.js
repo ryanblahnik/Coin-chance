@@ -4,7 +4,7 @@ angular.module('ngular')
     },
     template:
       `
-        <div class="flip-button" style="padding-bottom: 80px">
+        <div style="padding-bottom: 80px">
           <button style="width: 100%">Throw the coin</button>
         </div>
       `
