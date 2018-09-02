@@ -1,6 +1,7 @@
 angular.module('ngular')
   .component('results', {
     bindings: {
+      current: '<'
     },
     template:
       `
@@ -13,4 +14,7 @@ angular.module('ngular')
 
 
 
-  // {{flip result}} within <h2>
+// {{current}} within <h2>
+
+
+// get most recent result coming in to display here
