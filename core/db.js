@@ -20,7 +20,14 @@ const connectFn = function(err, res) {
 
 connectFn.useNewUrlParser = true;
 
-mongoose.connect(uristring, connectFn);
+var opt = {
+  useNewUrlParser: true;
+  auth: {
+    authdb: 'admin'
+  }
+};
+
+mongoose.connect(uristring, opt);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'db connection error:'));
