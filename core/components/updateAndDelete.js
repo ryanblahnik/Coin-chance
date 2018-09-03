@@ -12,20 +12,20 @@ angular.module('ngular')
           width: 100%;
           bottom: 0">
           <button
-            style="width: 25%;
+            style="width: 40%;
             border: 1px solid #E4E4E4;
-            border-radius: 9px;
+            border-radius: 7px;
             background: white;
-            height: 4em"
+            height: 8em"
             ng-click="$ctrl.updateClick()"
           >Cheat history</button><br>
           <button
-            style="width: 25%;
-            margin-top: 5px;
+            style="width: 40%;
+            margin-top: 30px;
             border: 1px solid #E4E4E4;
-            border-radius: 9px;
+            border-radius: 7px;
             background: white;
-            height: 4em"
+            height: 8em"
             ng-click="$ctrl.deleteClick()"
           >Delete history</button>
         </div>
