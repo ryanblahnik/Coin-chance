@@ -34,14 +34,6 @@ const save = function(err, data, callback) {
   } else {
     if (data) {
       setCounter();
-      // Result.find().exec(function(err, data) {
-      //   if (err) {
-      //     console.error(`db length check error: ${err}`);
-      //   } else {
-      //     // console.log(data.length);
-      //     counter = data.length;
-      //   }
-      // })
       var record = {
         _id: counter,
         result: data.result,
@@ -53,7 +45,6 @@ const save = function(err, data, callback) {
           console.error(`db save err: ${err}`);
         } else {
           counter += 1;
-          // callback(null, data);
           Result.find().exec(function(err, total) {
             if (err) {
               console.error(`db retrieve error: ${err}`);
@@ -80,6 +71,21 @@ const deleteHistory = function(err, callback) {
     console.error(`db delete error: ${err}`);
   } else {
     callback(null, 'db table cleared');
+    Result.deleteMany({}, function(err) {
+      if (err) {
+        console.error(`db deleteMany error: ${err}`);
+      } else {
+        counter = 0;
+        Result.find().exec(function(err, newTotal) {
+          if (err) {
+            console.error(`db find error after drop: ${err}`);
+          } else {
+            callback(null, newTotal);
+          }
+
+        })
+      }
+    });
   }
 };
 
@@ -90,23 +96,6 @@ const updateResult = function(err, entry, callback) {
     callback(null, 'db entry changed');
   }
 };
-
-// let retrieving = (callback) => {
-//   Result.find(function(err, data) {
-//     if (err) {
-//       console.error(err);
-//     } else {
-//       console.log(`db retrieving data: ${data}`);
-//     }
-//   }).exec(function(err, data) {
-//     if (err) {
-//       console.error(`db retrieve error: ${err}`);
-//     } else {
-//       callback(null, `db table retrieved`);
-//     }
-//   })
-// };
-
 
 module.exports.save = save;
 module.exports.deleteHistory = deleteHistory;

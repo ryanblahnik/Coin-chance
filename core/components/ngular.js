@@ -1,19 +1,12 @@
-// var moment = require('scripts/moment/moment.js');
-// moment().format();
-
 angular.module('ngular')
   .component('ngapp', {
-    // controller: function(flipServices) {
     controller: function(flipServices) {
 
       this.listOfResults = [];
 
       this.previous = (response) => {
         this.listOfResults = response;
-        // console.log('response ', response);
       }
-
-      // this.
 
       this.pressButton = () => {
         let result = Math.floor(Math.random() * 2);
@@ -28,36 +21,14 @@ angular.module('ngular')
           result: output,
           time: new Date()
         };
-        // this.listOfResults.unshift(obj);
-        // console.log('list ', this.listOfResults);
         flipServices.insert(obj, this.previous);
-
-
-        //   function(returned) {
-        //   // console.log(`ngular data ${returned}`);
-        //   this.listOfResults = returned;
-        //   this.previous(returned);
-        //   console.log('list 36: ', this.listOfResults);
-        // });
-
-        // console.log('list 39: ', this.listOfResults);
-
-        //   function(data) {
-        //   // console.log('ngular insert attempted');
-        //   console.log('ngular data ', data);
-        // })
-        // console.log(output);
-        // console.log('list ', this.listOfResults);
-        // call flip
-        // flipServices.retrieve(this.previous);
       };
 
-      this.flip = (response) => {
+      // this.flip = (response) => {
+      //   this.current = response;
+      //   // this.history = response;
+      // };
 
-        this.current = response;
-        // this.history = response;
-
-      };
       this.changeEntry = (entry) => {
         if (this.listOfResults.length !== 0) {
           let changing = Math.floor(Math.random() * this.listOfResults.length);
@@ -68,21 +39,15 @@ angular.module('ngular')
             toFlip.result = 'Heads';
           }
         }
+        flipServices.insert({cheat: true}, this.previous);
       };
 
       this.deleteEntry = (entry) => {
-        this.listOfResults = [];
-
+        flipServices.insert({drop: true}, this.previous);
       };
-
-
-      // flipServices.retrieve(this.previous);
-
 
       flipServices.insert(null, this.previous);
 
-
-      // this.flipService = flipServices;
     },
     template:
       `
