@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 
 var uristring =
-process.env.MONGOLAB_URI ||
+process.env.MONGOLAB_URI + `?authSource=admin` ||
 process.env.MONGOHQ_URL ||
 'mongodb://localhost/HelloMongoose';
 
@@ -23,7 +23,9 @@ var theport = process.env.PORT || 5000;
 var opt = {
   useNewUrlParser: true,
   auth: {
-    authdb: 'flipsmlab'
+    user: USER,
+    pass: PASS,
+    authdb: 'admin'
   }
 };
 
