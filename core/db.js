@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var Promise = require('bluebird');
+var http = require('http');
+var https = require('https');
 
 var uristring =
 process.env.MONGOLAB_URI ||
@@ -21,12 +23,13 @@ var theport = process.env.PORT || 5000;
 // connectFn.useNewUrlParser = true;
 
 var opt = {
+  uri_decode_auth: true,
   useNewUrlParser: true,
-  auth: {
-    user: process.env.USER,
-    pass: process.env.PASS,
-    authdb: 'flipsmlab'
-  }
+  // auth: {
+  //   user: process.env.USER,
+  //   pass: process.env.PASS,
+  //   authdb: 'flipsmlab'
+  // }
 };
 
 mongoose.connect(uristring, opt);
