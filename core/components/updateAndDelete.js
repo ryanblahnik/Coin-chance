@@ -16,7 +16,8 @@ angular.module('ngular')
             border: 1px solid #E4E4E4;
             border-radius: 7px;
             background: white;
-            height: 8em"
+            height: 8em;
+            outline: none"
             ng-click="$ctrl.updateClick()"
           >Cheat history</button><br>
           <button
@@ -25,7 +26,8 @@ angular.module('ngular')
             border: 1px solid #E4E4E4;
             border-radius: 7px;
             background: white;
-            height: 8em"
+            height: 8em;
+            outline: none"
             ng-click="$ctrl.deleteClick()"
           >Delete history</button>
         </div>
