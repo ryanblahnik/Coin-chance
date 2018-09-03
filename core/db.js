@@ -10,20 +10,20 @@ var theport = process.env.PORT || 5000;
 
 // mongoose.connect('mongodb://flips', { useNewUrlParser: true });
 
-const connectFn = function(err, res) {
-  if (err) {
-  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-  } else {
-  console.log ('Succeeded connected to: ' + uristring);
-  }
-};
+// const connectFn = function(err, res) {
+//   if (err) {
+//   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+//   } else {
+//   console.log ('Succeeded connected to: ' + uristring);
+//   }
+// };
 
-connectFn.useNewUrlParser = true;
+// connectFn.useNewUrlParser = true;
 
 var opt = {
   useNewUrlParser: true,
   auth: {
-    authdb: 'admin'
+    authdb: 'flipsmlab'
   }
 };
 
