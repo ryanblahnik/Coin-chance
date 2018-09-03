@@ -41,6 +41,10 @@ appServer.post('/', (req, res) => {
   }
 });
 
+appServer.get('/', (req, res) => {
+  res.status(200).end();
+});
+
 appServer.listen(8080, () => {
   console.log('Flip server listening on :8080')
 });
