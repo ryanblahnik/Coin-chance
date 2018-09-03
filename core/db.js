@@ -21,7 +21,7 @@ const connectFn = function(err, res) {
 connectFn.useNewUrlParser = true;
 
 var opt = {
-  useNewUrlParser: true;
+  useNewUrlParser: true,
   auth: {
     authdb: 'admin'
   }
