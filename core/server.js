@@ -6,7 +6,7 @@ var http = require('http');
 var https = require('https');
 const db = require('./db.js');
 
-var theport = process.env.PORT || 5000;
+var theport = process.env.PORT || 8080;
 
 const appServer = express();
 appServer.use(express.static(__dirname));
