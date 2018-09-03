@@ -23,8 +23,8 @@ var theport = process.env.PORT || 5000;
 var opt = {
   useNewUrlParser: true,
   auth: {
-    user: USER,
-    pass: PASS,
+    user: process.env.USER,
+    pass: process.env.PASS,
     authdb: 'admin'
   }
 };
