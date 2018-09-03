@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 var moment = require('moment');
+var http = require('http');
+var https = require('https');
 const db = require('./db.js');
 
 const appServer = express();
@@ -41,7 +43,7 @@ appServer.post('/', (req, res) => {
   }
 });
 
-appServer.get('/', (req, res) => {
+appServer.get('/*', (req, res) => {
   res.status(200).end();
 });
 
