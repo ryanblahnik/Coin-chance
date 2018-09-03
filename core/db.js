@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Promise = require('bluebird');
 
-mongoose.connect('mongodb://localhost/flips', { useNewUrlParser: true });
+mongoose.connect('mongodb://flips', { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'db connection error:'));
 db.once('open', function() {
