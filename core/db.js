@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 
 var uristring =
-process.env.MONGOLAB_URI + `?authSource=admin` ||
+process.env.MONGOLAB_URI ||
 process.env.MONGOHQ_URL ||
 'mongodb://localhost/HelloMongoose';
 
