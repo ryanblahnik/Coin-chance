@@ -9,14 +9,11 @@ angular.module('ngular')
       this.listOfResults = [];
 
       this.previous = (response) => {
-        // this.listOfResults = response;
+        this.listOfResults = response;
+        // console.log('response ', response);
       }
 
       // this.
-
-
-
-
 
       this.pressButton = () => {
         let result = Math.floor(Math.random() * 2);
@@ -31,14 +28,28 @@ angular.module('ngular')
           result: output,
           time: new Date()
         };
-        this.listOfResults.unshift(obj);
-        console.log('list ', this.listOfResults);
-        flipServices.insert(obj, function() {
-          console.log('ngular insert attempted');
-        })
+        // this.listOfResults.unshift(obj);
+        // console.log('list ', this.listOfResults);
+        flipServices.insert(obj, this.previous);
+
+
+        //   function(returned) {
+        //   // console.log(`ngular data ${returned}`);
+        //   this.listOfResults = returned;
+        //   this.previous(returned);
+        //   console.log('list 36: ', this.listOfResults);
+        // });
+
+        // console.log('list 39: ', this.listOfResults);
+
+        //   function(data) {
+        //   // console.log('ngular insert attempted');
+        //   console.log('ngular data ', data);
+        // })
         // console.log(output);
         // console.log('list ', this.listOfResults);
         // call flip
+        // flipServices.retrieve(this.previous);
       };
 
       this.flip = (response) => {
@@ -61,13 +72,14 @@ angular.module('ngular')
 
       this.deleteEntry = (entry) => {
         this.listOfResults = [];
+
       };
 
 
-      flipServices.retrieve(this.previous);
+      // flipServices.retrieve(this.previous);
 
 
-
+      flipServices.insert(null, this.previous);
 
 
       // this.flipService = flipServices;

@@ -17,19 +17,61 @@ var historySchema = new mongoose.Schema({
 var Result = mongoose.model('Result', historySchema);
 
 let counter = 0;
+
+const setCounter = function() {
+  Result.find().exec(function(err, data) {
+    if (err) {
+      console.error(`db length check error: ${err}`);
+    } else {
+      counter = data.length;
+    }
+  })
+};
+
 const save = function(err, data, callback) {
   if (err) {
     console.error(`db save error: ${err}`);
   } else {
-    var record = {
-      _id: counter,
-      result: data.result,
-      moment: data.time
+    if (data) {
+      setCounter();
+      // Result.find().exec(function(err, data) {
+      //   if (err) {
+      //     console.error(`db length check error: ${err}`);
+      //   } else {
+      //     // console.log(data.length);
+      //     counter = data.length;
+      //   }
+      // })
+      var record = {
+        _id: counter,
+        result: data.result,
+        moment: data.time
+      }
+      let storing = new Result(record);
+      storing.save(function(err, storing) {
+        if (err) {
+          console.error(`db save err: ${err}`);
+        } else {
+          counter += 1;
+          // callback(null, data);
+          Result.find().exec(function(err, total) {
+            if (err) {
+              console.error(`db retrieve error: ${err}`);
+            } else {
+              callback(null, total);
+            }
+          })
+        }
+      });
+    } else {
+      Result.find().exec(function(err, total) {
+        if (err) {
+          console.error(`db retrieve error: ${err}`);
+        } else {
+          callback(null, total);
+        }
+      })
     }
-    let storing = new Result(record);
-    storing.save();
-    counter += 1;
-    callback(null, data);
   }
 };
 
@@ -49,15 +91,21 @@ const updateResult = function(err, entry, callback) {
   }
 };
 
-let retrieving = (callback) => {
-  Result.find().exec(function(err, data) {
-    if (err) {
-      console.error(`db retrieve error: ${err}`);
-    } else {
-      callback(null, `db table retrieved`);
-    }
-  })
-};
+// let retrieving = (callback) => {
+//   Result.find(function(err, data) {
+//     if (err) {
+//       console.error(err);
+//     } else {
+//       console.log(`db retrieving data: ${data}`);
+//     }
+//   }).exec(function(err, data) {
+//     if (err) {
+//       console.error(`db retrieve error: ${err}`);
+//     } else {
+//       callback(null, `db table retrieved`);
+//     }
+//   })
+// };
 
 
 module.exports.save = save;

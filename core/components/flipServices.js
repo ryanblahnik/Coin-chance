@@ -12,24 +12,33 @@ angular.module('ngular')
 
     this.insert = function(entry, callback) {
       $http.post('/', entry)
-        .then(function() {
-          console.log('flipServices POST');
-        })
-        .catch(function() {
-          console.error('flipServices insert error');
+        .then(function(data) {
+          // console.log('flipServices POST');
+          // console.log('flipServices data ', data.data);
+          // let dbRetrieved = [];
+          // for (let i in data.data) {
+          //   dbRetrieved.push(data.data[i]);
+          // }
+          // console.log(dbRetrieved);
+          // console.log(typeof dbRetrieved);
+          callback(data.data);
+        },
+        function() {
+          // console.error('flipServices insert error');
         });
     };
 
-    this.retrieve = function(callback) {
-      $http.get('/')
-        .then(function({data}) {
-          console.log('flipServices GET');
-          callback(data);
-        })
-        .catch(function() {
-          console.error('flipServices retrieve error');
-        });
-    };
+    // this.retrieve = function(callback) {
+    //   $http.get('/')
+    //     .then(function(data) {
+    //       console.log('flipServices GET');
+    //       // console.log(data);  // this is the index page source
+    //       callback(data);
+    //     },
+    //     function() {
+    //       console.error('flipServices retrieve error');
+    //     });
+    // };
 
 
 

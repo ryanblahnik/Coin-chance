@@ -5,9 +5,8 @@ angular.module('ngular')
     },
     template:
       `
-        <div>
-          {{$ctrl.entry}}
-        </div>
+        <strong>{{$ctrl.entry.result}}</strong>
+        <em style="float:right">{{$ctrl.entry.moment}}</em><br>
       `
   });
 

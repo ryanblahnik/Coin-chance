@@ -6,10 +6,12 @@ angular.module('ngular')
     template:
       `
         <div style="padding-bottom: 120px">
-          <display-results-entry
-            ng-repeat="entry in $ctrl.history"
-            entry="entry"
-          ></display-results-entry>
+          <table>
+              <display-results-entry
+                ng-repeat="entry in $ctrl.history | orderBy:'':true"
+                entry="entry"
+              ></display-results-entry>
+          </table>
         </div>
       `
   });
@@ -39,3 +41,30 @@ angular.module('ngular')
         //     entry="entry"
         //   ></display-results-entry>
         // </div>
+
+
+      //           <div style="padding-bottom: 120px">
+      //     <table>
+      //       <tr>
+      //         <th>test</th>
+      //         <th>test</th>
+      //       </tr>
+      //         <display-results-entry
+      //           ng-repeat="entry in $ctrl.history | orderBy:'':true"
+      //           entry="entry"
+      //         ></display-results-entry>
+      //     </table>
+      //   </div>
+      // `
+
+
+      // `
+      //   <div style="padding-bottom: 120px">
+      //     <table>
+      //         <display-results-entry
+      //           ng-repeat="entry in $ctrl.history | orderBy:'':true"
+      //           entry="entry"
+      //         ></display-results-entry>
+      //     </table>
+      //   </div>
+      // `
