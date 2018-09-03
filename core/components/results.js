@@ -10,10 +10,3 @@ angular.module('ngular')
         </div>
       `
   });
-
-
-
-// {{current}} within <h2>
-
-
-// get most recent result coming in to display here

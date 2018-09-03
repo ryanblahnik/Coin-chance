@@ -24,22 +24,11 @@ angular.module('ngular')
         flipServices.insert(obj, this.previous);
       };
 
-      // this.flip = (response) => {
-      //   this.current = response;
-      //   // this.history = response;
-      // };
-
       this.changeEntry = (entry) => {
         if (this.listOfResults.length !== 0) {
           let changing = Math.floor(Math.random() * this.listOfResults.length);
-          let toFlip = this.listOfResults[changing];
-          if (toFlip.result === 'Heads') {
-            toFlip.result = 'Tails';
-          } else {
-            toFlip.result = 'Heads';
-          }
+          flipServices.insert({cheat: true, changing: changing}, this.previous);
         }
-        flipServices.insert({cheat: true}, this.previous);
       };
 
       this.deleteEntry = (entry) => {
@@ -47,7 +36,6 @@ angular.module('ngular')
       };
 
       flipServices.insert(null, this.previous);
-
     },
     template:
       `

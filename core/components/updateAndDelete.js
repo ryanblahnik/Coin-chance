@@ -21,15 +21,3 @@ angular.module('ngular')
         </div>
       `
   });
-
-
-// update picks an id from the db table
-//  flips the result only
-//  - the change in the db is recognized and
-//      displayResults updates
-//  probably do this last because it's weird
-
-// delete
-//  - clears all the records, start fresh
-//  - page refresh will persist from db
-//  - this will clear all history

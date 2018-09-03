@@ -9,11 +9,3 @@ angular.module('ngular')
         <em style="float:right">{{$ctrl.entry.moment}}</em><br>
       `
   });
-
-
-// {{history}} displayed or formatted and displayed
-
-// match db
-//  - time and result for each entry
-//  - as each new result occurs, this recognizes the db update
-//      and shows all the most current results

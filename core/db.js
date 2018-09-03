@@ -17,7 +17,6 @@ var historySchema = new mongoose.Schema({
 var Result = mongoose.model('Result', historySchema);
 
 let counter = 0;
-
 const setCounter = function() {
   Result.find().exec(function(err, data) {
     if (err) {
@@ -27,6 +26,7 @@ const setCounter = function() {
     }
   })
 };
+setCounter();
 
 const save = function(err, data, callback) {
   if (err) {
@@ -93,8 +93,36 @@ const updateResult = function(err, entry, callback) {
   if (err) {
     console.error(`db update error: ${err}`);
   } else {
-    callback(null, 'db entry changed');
+    Result.findById(entry, function(err, result) {
+      if (err) {
+        console.error(`db update find error: ${err}`);
+      } else {
+        if (result.result === 'Heads') {
+          result.result = 'Tails';
+          updateHelper(result, callback);
+        } else {
+          result.result = 'Heads';
+          updateHelper(result, callback);
+        }
+      }
+    });
   }
+};
+
+const updateHelper = function(document, callback) {
+  document.save(function(err) {
+    if (err) {
+      console.error(`db update save error: ${err}`);
+    } else {
+      Result.find().exec(function(err, newTotal) {
+        if (err) {
+          console.error(`db find error after update: ${err}`);
+        } else {
+          callback(null, newTotal);
+        }
+      });
+    }
+  });
 };
 
 module.exports.save = save;
