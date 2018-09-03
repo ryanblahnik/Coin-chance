@@ -21,7 +21,7 @@ angular.module('ngular')
           >Cheat history</button><br>
           <button
             style="width: 40%;
-            margin-top: 30px;
+            margin-top: 20px;
             border: 1px solid #E4E4E4;
             border-radius: 7px;
             background: white;
