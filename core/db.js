@@ -25,7 +25,7 @@ var opt = {
   auth: {
     user: process.env.USER,
     pass: process.env.PASS,
-    authdb: 'admin'
+    authdb: 'flipsmlab'
   }
 };
 
