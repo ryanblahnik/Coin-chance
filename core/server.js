@@ -6,6 +6,8 @@ var http = require('http');
 var https = require('https');
 const db = require('./db.js');
 
+var theport = process.env.PORT || 5000;
+
 const appServer = express();
 appServer.use(express.static(__dirname));
 appServer.use('/scripts', express.static(
@@ -47,6 +49,6 @@ appServer.get('/*', (req, res) => {
   res.status(200).end();
 });
 
-appServer.listen(8080, () => {
-  console.log('Flip server listening on :8080')
+appServer.listen(theport, () => {
+  console.log(`Flip server listening on :${theport}`)
 });

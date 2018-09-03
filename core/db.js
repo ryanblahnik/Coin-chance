@@ -23,7 +23,7 @@ var theport = process.env.PORT || 5000;
 // connectFn.useNewUrlParser = true;
 
 var opt = {
-  uri_decode_auth: true,
+  // uri_decode_auth: true,
   useNewUrlParser: true,
   // auth: {
   //   user: process.env.USER,
