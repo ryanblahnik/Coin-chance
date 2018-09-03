@@ -1,11 +1,27 @@
 var mongoose = require('mongoose');
 var Promise = require('bluebird');
 
-mongoose.connect('mongodb://flips', { useNewUrlParser: true });
+var uristring =
+process.env.MONGOLAB_URI ||
+process.env.MONGOHQ_URL ||
+'mongodb://localhost/HelloMongoose';
+
+var theport = process.env.PORT || 5000;
+
+// mongoose.connect('mongodb://flips', { useNewUrlParser: true });
+
+mongoose.connect(uristring, function (err, res) {
+  if (err) {
+  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+  console.log ('Succeeded connected to: ' + uristring);
+  }
+});
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'db connection error:'));
 db.once('open', function() {
-  console.log('db connected on :27017');
+  console.log(`db connected on :${theport}`);
 });
 
 var historySchema = new mongoose.Schema({
