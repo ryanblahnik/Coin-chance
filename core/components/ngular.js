@@ -1,18 +1,52 @@
+// var moment = require('scripts/moment/moment.js');
+// moment().format();
+
 angular.module('ngular')
   .component('ngapp', {
     // controller: function(flipServices) {
     controller: function() {
+
+      this.listOfResults = [];
+
+      this.pressButton = () => {
+        let result = Math.floor(Math.random() * 2);
+        let output = '';
+        if (result === 0) {
+          output = 'Heads';
+        } else {
+          output = 'Tails';
+        }
+        this.current = output;
+        let obj = {
+          result: output,
+          time: new Date()
+        };
+        this.listOfResults.unshift(obj);
+        // console.log(output);
+        // console.log('list ', this.listOfResults);
+        // call flip
+      };
+
       this.flip = (response) => {
 
         this.current = response;
-        this.history = response;
+        // this.history = response;
 
       };
       this.changeEntry = (entry) => {
-
+        if (this.listOfResults.length !== 0) {
+          let changing = Math.floor(Math.random() * this.listOfResults.length);
+          let toFlip = this.listOfResults[changing];
+          if (toFlip.result === 'Heads') {
+            toFlip.result = 'Tails';
+          } else {
+            toFlip.result = 'Heads';
+          }
+        }
       };
-      this.deleteEntry = (entry) => {
 
+      this.deleteEntry = (entry) => {
+        this.listOfResults = [];
       };
       // this.flipService = flipServices;
     },
@@ -26,12 +60,13 @@ angular.module('ngular')
           ></results>
           <flip-button
 
-            on-click="$ctrl.flip"
+            on-press="$ctrl.pressButton"
 
           ></flip-button>
           <display-results
 
-            history="$ctrl.history"
+            history="$ctrl.listOfResults"
+
 
           ></display-results>
           <update-and-delete
