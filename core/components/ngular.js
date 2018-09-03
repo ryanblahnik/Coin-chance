@@ -4,9 +4,19 @@
 angular.module('ngular')
   .component('ngapp', {
     // controller: function(flipServices) {
-    controller: function() {
+    controller: function(flipServices) {
 
       this.listOfResults = [];
+
+      this.previous = (response) => {
+        // this.listOfResults = response;
+      }
+
+      // this.
+
+
+
+
 
       this.pressButton = () => {
         let result = Math.floor(Math.random() * 2);
@@ -22,6 +32,10 @@ angular.module('ngular')
           time: new Date()
         };
         this.listOfResults.unshift(obj);
+        console.log('list ', this.listOfResults);
+        flipServices.insert(obj, function() {
+          console.log('ngular insert attempted');
+        })
         // console.log(output);
         // console.log('list ', this.listOfResults);
         // call flip
@@ -48,6 +62,14 @@ angular.module('ngular')
       this.deleteEntry = (entry) => {
         this.listOfResults = [];
       };
+
+
+      flipServices.retrieve(this.previous);
+
+
+
+
+
       // this.flipService = flipServices;
     },
     template:

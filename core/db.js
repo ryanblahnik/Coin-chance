@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-// var Promise = require('bluebird');
+var Promise = require('bluebird');
 
 mongoose.connect('mongodb://localhost/flips', { useNewUrlParser: true });
 var db = mongoose.connection;
@@ -11,41 +11,52 @@ db.once('open', function() {
 var historySchema = new mongoose.Schema({
   _id: Number,
   result: String,
-  moment: Date
-});
+  moment: String
+}, { versionKey: false });
 
 var Result = mongoose.model('Result', historySchema);
 
 let counter = 0;
 const save = function(err, data, callback) {
   if (err) {
-    return console.error(`db save error: ${err}`);
+    console.error(`db save error: ${err}`);
+  } else {
+    var record = {
+      _id: counter,
+      result: data.result,
+      moment: data.time
+    }
+    let storing = new Result(record);
+    storing.save();
+    counter += 1;
+    callback(null, data);
   }
-  var record = {
-    _id: counter,
-    result: data.result,
-    moment: data.time
-  }
-  let storing = new Result(entry);
-  storing.save();
-  counter += 1;
-  callback(null, data);
 };
 
 const deleteHistory = function(err, callback) {
   if (err) {
-    return console.error(`db delete error: ${err}`);
+    console.error(`db delete error: ${err}`);
+  } else {
+    callback(null, 'db table cleared');
   }
-
-  callback(null, 'db table cleared');
 };
 
 const updateResult = function(err, entry, callback) {
   if (err) {
-    return console.error(`db update error: ${err}`);
+    console.error(`db update error: ${err}`);
+  } else {
+    callback(null, 'db entry changed');
   }
+};
 
-  callback(null, 'db entry changed');
+let retrieving = (callback) => {
+  Result.find().exec(function(err, data) {
+    if (err) {
+      console.error(`db retrieve error: ${err}`);
+    } else {
+      callback(null, `db table retrieved`);
+    }
+  })
 };
 
 
