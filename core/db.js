@@ -10,13 +10,17 @@ var theport = process.env.PORT || 5000;
 
 // mongoose.connect('mongodb://flips', { useNewUrlParser: true });
 
-mongoose.connect(uristring, function (err, res) {
+const connectFn = function(err, res) {
   if (err) {
   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
   console.log ('Succeeded connected to: ' + uristring);
   }
-});
+};
+
+connectFn.useNewUrlParser = true;
+
+mongoose.connect(uristring, connectFn);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'db connection error:'));
