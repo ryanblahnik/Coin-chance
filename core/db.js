@@ -5,10 +5,10 @@ var https = require('https');
 
 var uristring =
 process.env.MONGOLAB_URI ||
-process.env.MONGOHQ_URL ||
+// process.env.MONGOHQ_URL ||
 'mongodb://localhost/HelloMongoose';
 
-var theport = process.env.PORT || 5000;
+// var theport = process.env.PORT || 5000;
 
 // mongoose.connect('mongodb://flips', { useNewUrlParser: true });
 
@@ -37,7 +37,7 @@ mongoose.connect(uristring, opt);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'db connection error:'));
 db.once('open', function() {
-  console.log(`db connected on :${theport}`);
+  console.log(`db connected`);
 });
 
 var historySchema = new mongoose.Schema({
